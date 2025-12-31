@@ -36,6 +36,9 @@ cd uit-survey-auto-complete
 # 3. Load unpacked → Chọn folder này
 ```
 
+> [!IMPORTANT] > **QUAN TRỌNG: KHÔNG XÓA FOLDER EXTENSION!**
+> Extension hoạt động bằng cách trỏ trực tiếp đến folder trên máy. Nếu xóa/di chuyển folder, extension sẽ ngưng hoạt động. Hãy giữ folder ở vị trí cố định.
+
 ## Hướng dẫn sử dụng
 
 ### Batch Mode (Điền tất cả khảo sát)
