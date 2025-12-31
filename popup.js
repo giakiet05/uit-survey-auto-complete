@@ -26,12 +26,17 @@ startBtn.addEventListener('click', async () => {
 
   if (isRunning) {
     statusDiv.textContent = 'Đang dừng...';
+
+    const result = await chrome.storage.local.get(['uit_survey_batch_mode']);
+    const batchData = result.uit_survey_batch_mode;
+    const listUrl = batchData?.listUrl || 'https://student.uit.edu.vn/sinhvien/phieukhaosat';
+
     await chrome.storage.local.clear();
     chrome.runtime.sendMessage({ action: 'CLEAR_BADGE' });
 
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (tab.url.includes('survey.uit.edu.vn')) {
-      chrome.tabs.update(tab.id, { url: 'https://student.uit.edu.vn/sinhvien/phieukhaosat' });
+      chrome.tabs.update(tab.id, { url: listUrl });
     }
 
     statusDiv.textContent = 'Đã dừng!';
@@ -50,7 +55,8 @@ startBtn.addEventListener('click', async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
     const isValidPage = tab.url.includes('survey.uit.edu.vn') ||
-                         tab.url.includes('student.uit.edu.vn/sinhvien/phieukhaosat');
+                         tab.url.includes('student.uit.edu.vn/sinhvien/phieukhaosat') ||
+                         tab.url.includes('daa.uit.edu.vn/sinhvien/phieukhaosat');
 
     if (!isValidPage) {
       statusDiv.classList.add('warning');

@@ -10,7 +10,8 @@
   ],
   "host_permissions": [
     "https://survey.uit.edu.vn/*",
-    "https://student.uit.edu.vn/*"
+    "https://student.uit.edu.vn/*",
+    "https://daa.uit.edu.vn/*"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -35,7 +36,8 @@
     {
       "matches": [
         "https://survey.uit.edu.vn/*",
-        "https://student.uit.edu.vn/*"
+        "https://student.uit.edu.vn/*",
+        "https://daa.uit.edu.vn/*"
       ],
       "js": ["content-script.js"],
       "run_at": "document_idle"

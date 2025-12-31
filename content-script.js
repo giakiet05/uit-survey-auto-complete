@@ -4,14 +4,22 @@ let isRunning = false;
 const DELAY = 300;
 const BATCH_STORAGE_KEY = 'uit_survey_batch_mode';
 const SINGLE_STORAGE_KEY = 'uit_survey_autofill_running';
-const LIST_URL = 'https://student.uit.edu.vn/sinhvien/phieukhaosat';
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function getListUrl() {
+  if (window.location.href.includes('daa.uit.edu.vn')) {
+    return 'https://daa.uit.edu.vn/sinhvien/phieukhaosat';
+  }
+  return 'https://student.uit.edu.vn/sinhvien/phieukhaosat';
+}
+
 function isListPage() {
-  return window.location.href.includes('student.uit.edu.vn/sinhvien/phieukhaosat');
+  return window.location.href.includes('/sinhvien/phieukhaosat') &&
+         (window.location.href.includes('student.uit.edu.vn') ||
+          window.location.href.includes('daa.uit.edu.vn'));
 }
 
 function isSurveyPage() {
@@ -130,7 +138,7 @@ async function startBatchMode() {
   const batchData = {
     urls: urlsToProcess,
     currentIndex: 0,
-    listUrl: LIST_URL
+    listUrl: getListUrl()
   };
 
   await chrome.storage.local.set({ [BATCH_STORAGE_KEY]: batchData });
@@ -189,7 +197,7 @@ setTimeout(async () => {
     if (batchData && bodyText.includes('HOÀN THÀNH KHẢO SÁT')) {
       console.log('Survey completed! Going back to list...');
       await delay(1000);
-      window.location.href = LIST_URL;
+      window.location.href = batchData.listUrl;
       return;
     }
 

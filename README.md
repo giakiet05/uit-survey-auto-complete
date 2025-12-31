@@ -43,7 +43,7 @@ cd uit-survey-auto-complete
 
 ### Batch Mode (Điền tất cả khảo sát)
 
-1. Vào trang danh sách khảo sát: `https://student.uit.edu.vn/sinhvien/phieukhaosat`
+1. Vào trang danh sách khảo sát: `https://student.uit.edu.vn/sinhvien/phieukhaosat` (hoặc `https://daa.uit.edu.vn/sinhvien/phieukhaosat`)
 2. Click icon extension
 3. Bấm **"Bắt đầu tự động điền"**
 4. Extension sẽ tự động:
